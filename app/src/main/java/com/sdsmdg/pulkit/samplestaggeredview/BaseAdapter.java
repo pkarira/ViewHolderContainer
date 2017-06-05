@@ -37,7 +37,7 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case IMAGE:
                 return new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false),200,800);
             case 3:
-                return new CustomHorizontalViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_horizontal_recyclerview, parent, false),new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false),parentAct,200,400),new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false),200,400),parentAct);
+                return new CustomHorizontalViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_horizontal_recyclerview, parent, false),new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false),parentAct,200,800),new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false),300,800),new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false),parentAct,300,800),new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false),320,800),parentAct);
             default:
                 return new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false),200,800);
         }
@@ -71,7 +71,7 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        protected TextView title;
+        TextView title;
         CardView cardView;
 
         public ListViewHolder(final View vi, int height, int width) {

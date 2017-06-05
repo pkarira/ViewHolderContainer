@@ -13,11 +13,15 @@ import java.util.ArrayList;
 public class CustomHorizontalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     RecyclerView.ViewHolder viewHolder11;
     RecyclerView.ViewHolder viewHolder12;
+    RecyclerView.ViewHolder viewHolder13;
+    RecyclerView.ViewHolder viewHolder14;
     ArrayList<String> movies;
 
-    CustomHorizontalAdapter(RecyclerView.ViewHolder viewHolder1, RecyclerView.ViewHolder viewHolder2, ArrayList<String> movie) {
+    CustomHorizontalAdapter(RecyclerView.ViewHolder viewHolder1, RecyclerView.ViewHolder viewHolder2,RecyclerView.ViewHolder viewHolder3,RecyclerView.ViewHolder viewHolder4, ArrayList<String> movie) {
         viewHolder11 = viewHolder1;
         viewHolder12 = viewHolder2;
+        viewHolder13 = viewHolder3;
+        viewHolder14 = viewHolder4;
         movies = movie;
     }
 
@@ -28,6 +32,10 @@ public class CustomHorizontalAdapter extends RecyclerView.Adapter<RecyclerView.V
                 return viewHolder11;
             case 2:
                 return viewHolder12;
+            case 3:
+                return viewHolder13;
+            case 4:
+                return viewHolder14;
             default:
                 return viewHolder11;
         }
@@ -35,22 +43,15 @@ public class CustomHorizontalAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        switch (holder.getItemViewType())
-        {
-            case 1:
-            case 2:
-            default:
-
-        }
     }
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return 4;
     }
 
     @Override
     public int getItemViewType(int position) {
-        return position + 1;
+        return position+1;
     }
 }

@@ -5,7 +5,9 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -19,16 +21,18 @@ public class CustomHorizontalViewHolder extends RecyclerView.ViewHolder {
     RecyclerView recyclerView;
     CustomHorizontalAdapter customHorizontalAdapter;
     ArrayList<String> movies;
-    private GridLayoutManager llm;
-    public CustomHorizontalViewHolder(View itemView, RecyclerView.ViewHolder viewHolder1, RecyclerView.ViewHolder viewHolder2, Activity activity) {
+    private StaggeredGridLayoutManager llm;
+    public CustomHorizontalViewHolder(View itemView, RecyclerView.ViewHolder viewHolder1, RecyclerView.ViewHolder viewHolder2,RecyclerView.ViewHolder viewHolder3,RecyclerView.ViewHolder viewHolder4, Activity activity) {
         super(itemView);
         movies=new ArrayList<>();
-        movies.add("pulkit");
-        movies.add("pulkit");
         recyclerView = (RecyclerView) itemView.findViewById(R.id.customhorizontalrecyclerview);
-        llm = new GridLayoutManager(activity,2);
+        llm = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        customHorizontalAdapter=new CustomHorizontalAdapter(viewHolder1,viewHolder2,movies);
+        ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+        params.height = 600;
+        params.width = 1000;
+        recyclerView.setLayoutParams(params);
+        customHorizontalAdapter=new CustomHorizontalAdapter(viewHolder1,viewHolder2,viewHolder3,viewHolder4,movies);
         recyclerView.setAdapter(customHorizontalAdapter);
     }
 }

@@ -1,6 +1,7 @@
 package com.sdsmdg.pulkit.samplestaggeredview;
 
 import android.app.Activity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,9 +27,8 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         movies.add("pulkit");
         movies.add("pulkit");
         movies.add("pulkit");
-        movies.add("pulkit");
         recyclerViewAdapter = new RecyclerViewAdapter(movies);
-        linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true);
+        linearLayoutManager = new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,true);
         recyclerView.setLayoutManager(linearLayoutManager);
         ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
         params.height = height;
@@ -38,11 +38,5 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void additems() {
-        movies = new ArrayList<>();
-        movies.add("pulkit");
-        movies.add("pulkit");
-        movies.add("pulkit");
-        movies.add("pulkit");
-        movies.add("pulkit");
     }
 }
