@@ -15,14 +15,13 @@ import java.util.List;
 public class CustomStaggeredViewHolder extends RecyclerView.ViewHolder {
     RecyclerView recyclerView;
     CustomStaggeredAdapter customHorizontalAdapter;
-    ArrayList<String> movies;
     private StaggeredGridLayoutManager llm;
     public CustomStaggeredViewHolder(View itemView, List<RecyclerView.ViewHolder> viewHolders, Activity activity,int columns) {
         super(itemView);
         recyclerView = (RecyclerView) itemView.findViewById(R.id.customhorizontalrecyclerview);
         llm = new StaggeredGridLayoutManager(columns,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        customHorizontalAdapter=new CustomStaggeredAdapter(viewHolders,movies);
+        customHorizontalAdapter=new CustomStaggeredAdapter(viewHolders);
         recyclerView.setAdapter(customHorizontalAdapter);
     }
 }

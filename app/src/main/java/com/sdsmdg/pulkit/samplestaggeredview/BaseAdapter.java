@@ -67,6 +67,16 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 gridHolderItems.add(new GridHolderItems(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 800), 1));
                 gridHolderItems.add(new GridHolderItems(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 800), 1));
                 return new CustomGridHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false), gridHolderItems, parentAct, 4);
+            case 8:
+                viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 600, 600));
+                viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 600, 400));
+                viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 350, 800));
+                viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 400, 400));
+                viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 300, 800));
+                viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 250, 400));
+                viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 250, 800));
+                viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 300, 400));
+                return new CustomScrollHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false), viewHolders, parentAct);
             default:
                 return new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 800);
         }
@@ -92,6 +102,8 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case 6:
                 break;
             case 7:
+                break;
+            case 8:
                 break;
             default:
                 ListViewHolder listViewHolder1 = (ListViewHolder) holder;
