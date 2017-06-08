@@ -50,7 +50,7 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case 4:
                 gridHolderItems.add(new GridHolderItems(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 800), 1));
                 gridHolderItems.add(new GridHolderItems(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 800), 1));
-               /* gridHolderItems.add(new GridHolderItems(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 800), 1));*/
+                gridHolderItems.add(new GridHolderItems(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 800), 1));
                 return new CustomGridHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false), gridHolderItems, parentAct, 3);
             case 5:
                 gridHolderItems.add(new GridHolderItems(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 800), 2));
@@ -77,6 +77,8 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 250, 800));
                 viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 300, 400));
                 return new CustomScrollHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false), viewHolders, parentAct);
+            case 9:
+
             default:
                 return new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 800);
         }

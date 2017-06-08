@@ -3,10 +3,7 @@ package com.sdsmdg.pulkit.samplestaggeredview;
 import android.app.Activity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
