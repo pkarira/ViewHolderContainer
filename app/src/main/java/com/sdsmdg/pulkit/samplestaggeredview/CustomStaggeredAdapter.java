@@ -12,9 +12,9 @@ import java.util.List;
  */
 
 public class CustomStaggeredAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    List<RecyclerView.ViewHolder> mViewHolders;
+    List<AbstractViewHolder> mViewHolders;
 
-    CustomStaggeredAdapter(List<RecyclerView.ViewHolder> viewHolders) {
+    CustomStaggeredAdapter(List<AbstractViewHolder> viewHolders) {
         mViewHolders = viewHolders;
     }
 

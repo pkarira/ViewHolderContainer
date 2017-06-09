@@ -58,6 +58,17 @@ public class MainActivity extends AppCompatActivity {
         movieList.add("pulkit");
         movieList.add("pulkit");
         movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
+        movieList.add("pulkit");
         return movieList;
     }
 }

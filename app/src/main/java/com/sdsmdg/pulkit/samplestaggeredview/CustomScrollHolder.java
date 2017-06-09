@@ -16,7 +16,7 @@ public class CustomScrollHolder extends RecyclerView.ViewHolder {
     RecyclerView recyclerView;
     CustomScrollAdapter customScrollAdapter;
     private LinearLayoutManager linearLayoutManager;
-    public CustomScrollHolder(View itemView, final List<RecyclerView.ViewHolder> viewHolders, Activity activity) {
+    public CustomScrollHolder(View itemView, final List<AbstractViewHolder> viewHolders, Activity activity) {
         super(itemView);
         recyclerView = (RecyclerView) itemView.findViewById(R.id.customhorizontalrecyclerview);
         linearLayoutManager = new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,true);

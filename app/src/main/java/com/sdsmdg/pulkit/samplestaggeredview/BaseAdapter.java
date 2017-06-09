@@ -24,7 +24,7 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Random mRandom = new Random();
     private final int RECYCLER = 1;
     private final int IMAGE = 2;
-    private List<RecyclerView.ViewHolder> viewHolders;
+    private List<AbstractViewHolder> viewHolders;
     private List<GridHolderItems> gridHolderItems;
 
     public BaseAdapter(ArrayList<String> movieList1, Activity activity) {
@@ -41,7 +41,7 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 return new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 800);
             case IMAGE:
                 return new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 800);
-            case 3:
+          /*  case 3:
                 viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 800));
                 viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 300, 800));
                 viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 300, 800));
@@ -76,9 +76,17 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 250, 400));
                 viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 250, 800));
                 viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 300, 400));
-                return new CustomScrollHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false), viewHolders, parentAct);
-            case 9:
-
+                return new CustomScrollHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false), viewHolders, parentAct);*/
+           /* case 9:
+                viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 0.2));
+                viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 0.4));
+                viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 0.4));
+                viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 0.3));
+                viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 0.3));
+                viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 0.3));
+                viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 0.5));
+                viewHolders.add(new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 0.5));
+                return new GridHelperHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false), viewHolders,parentAct,parent);*/
             default:
                 return new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 800);
         }
@@ -107,6 +115,8 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 break;
             case 8:
                 break;
+            case 9:
+                break;
             default:
                 ListViewHolder listViewHolder1 = (ListViewHolder) holder;
                 listViewHolder1.title.setText(movieList.get(position));
@@ -125,15 +135,15 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView title;
         CardView cardView;
 
-        public ListViewHolder(final View vi, int height, int width) {
+        public ListViewHolder(final View vi, double height, double width) {
             super(vi);
             mHeight = height;
             mWidth = width;
             title = (TextView) vi.findViewById(R.id.textView);
             cardView = (CardView) vi.findViewById(R.id.cardView);
             ViewGroup.LayoutParams params = cardView.getLayoutParams();
-            params.height = height;
-            params.width = width;
+            params.height = (int)height*800;
+            params.width = (int)width*800;
             cardView.setLayoutParams(params);
             vi.setOnClickListener(this);
         }
@@ -167,15 +177,5 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
         return position + 1;
-    }
-
-    class GridHolderItems {
-        public RecyclerView.ViewHolder mViewHolder;
-        public Integer columnsOccupied;
-
-        public GridHolderItems(RecyclerView.ViewHolder viewHolder, int columns) {
-            mViewHolder = viewHolder;
-            columnsOccupied = columns;
-        }
     }
 }

@@ -18,12 +18,12 @@ public class RecyclerViewHolder extends AbstractViewHolder {
     RecyclerViewAdapter recyclerViewAdapter;
     ArrayList<String> movies;
     LinearLayoutManager linearLayoutManager;
-    int mHeight,mWidth;
+    double mHeight, mWidth;
 
-    public RecyclerViewHolder(View itemView, Activity activity, int height, int width) {
+    public RecyclerViewHolder(View itemView, Activity activity, double height, double width) {
         super(itemView);
-        mHeight=height;
-        mWidth=width;
+        mHeight = height;
+        mWidth = width;
         recyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerview);
         movies = new ArrayList<>();
         movies.add("pulkit");
@@ -31,11 +31,11 @@ public class RecyclerViewHolder extends AbstractViewHolder {
         movies.add("pulkit");
         movies.add("pulkit");
         recyclerViewAdapter = new RecyclerViewAdapter(movies);
-        linearLayoutManager = new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,true);
+        linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true);
         recyclerView.setLayoutManager(linearLayoutManager);
         ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
-        params.height = height;
-        params.width = width;
+        params.height = (int)height*800;
+        params.width = (int)width*800;
         recyclerView.setLayoutParams(params);
         recyclerView.setAdapter(recyclerViewAdapter);
     }

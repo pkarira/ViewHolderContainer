@@ -1,5 +1,6 @@
 package com.sdsmdg.pulkit.samplestaggeredview;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -8,8 +9,8 @@ import android.view.View;
  */
 
 public abstract class AbstractViewHolder extends RecyclerView.ViewHolder {
-    int mHeight;
-    int mWidth;
+    double mHeight;
+    double mWidth;
     public AbstractViewHolder(View itemView) {
         super(itemView);
     }
