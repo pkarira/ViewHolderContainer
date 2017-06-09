@@ -121,12 +121,14 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return movieList.size();
     }
 
-    public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ListViewHolder extends AbstractViewHolder implements View.OnClickListener {
         TextView title;
         CardView cardView;
 
         public ListViewHolder(final View vi, int height, int width) {
             super(vi);
+            mHeight = height;
+            mWidth = width;
             title = (TextView) vi.findViewById(R.id.textView);
             cardView = (CardView) vi.findViewById(R.id.cardView);
             ViewGroup.LayoutParams params = cardView.getLayoutParams();

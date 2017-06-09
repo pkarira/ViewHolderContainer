@@ -11,9 +11,9 @@ import java.util.List;
  */
 
 public class CustomGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    List<BaseAdapter.GridHolderItems> mViewHolders;
+    List<GridHolderItems> mViewHolders;
 
-    CustomGridAdapter(List<BaseAdapter.GridHolderItems> viewHolders) {
+    CustomGridAdapter(List<GridHolderItems> viewHolders) {
         mViewHolders = viewHolders;
     }
 
