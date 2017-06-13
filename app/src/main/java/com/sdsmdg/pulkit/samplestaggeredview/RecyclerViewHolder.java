@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,7 +19,6 @@ public class RecyclerViewHolder extends AbstractViewHolder {
     RecyclerViewAdapter recyclerViewAdapter;
     ArrayList<String> movies;
     LinearLayoutManager linearLayoutManager;
-    double mHeight, mWidth;
 
     public RecyclerViewHolder(View itemView, Activity activity, double height, double width) {
         super(itemView);
@@ -34,8 +34,8 @@ public class RecyclerViewHolder extends AbstractViewHolder {
         linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true);
         recyclerView.setLayoutManager(linearLayoutManager);
         ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
-        params.height = (int)height*800;
-        params.width = (int)width*800;
+        params.height = (int)height;
+        params.width = (int)(width*800);
         recyclerView.setLayoutParams(params);
         recyclerView.setAdapter(recyclerViewAdapter);
     }

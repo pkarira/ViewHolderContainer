@@ -3,6 +3,7 @@ package com.sdsmdg.pulkit.samplestaggeredview;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by pulkit on 9/6/17.
@@ -21,28 +23,40 @@ public class GridHelperHolder extends RecyclerView.ViewHolder {
     List<AbstractViewHolder> viewHolderList;
     private List<GridHolderItems> gridHolderItems;
     List<CustomGridHolder> customGridHoldersList;
-    int columns;
+    int columns,j;
     private LinearLayoutManager linearLayoutManager;
 
     public GridHelperHolder(View itemView, final List<AbstractViewHolder> viewHolders, Activity activity, ViewGroup parent) {
         super(itemView);
-        customGridHoldersList=new ArrayList<>();
+        customGridHoldersList = new ArrayList<>();
         recyclerView = (RecyclerView) itemView.findViewById(R.id.customhorizontalrecyclerview);
+        gridHolderItems = new ArrayList<>();
         linearLayoutManager = new LinearLayoutManager(activity);
-        int fraction = 0;
+        double fraction = 0;
         viewHolderList = new ArrayList<>();
         for (int i = 0; i < viewHolders.size(); i++) {
-            if (fraction + viewHolders.get(0).mWidth <= 1) {
-                fraction += viewHolders.get(0).mWidth;
+            if (fraction + viewHolders.get(i).mWidth <= 1) {
+                fraction = fraction + viewHolders.get(i).mWidth;
                 viewHolderList.add(viewHolders.get(i));
             } else {
-                columns = columnNo(convertToDoubleDecimal(viewHolders));
-                for (int j = 0; j < viewHolderList.size(); j++) {
-                    gridHolderItems.add(new GridHolderItems(viewHolderList.get(j),(int)Math.round((viewHolderList.get(j).mWidth)*columns)));
+                columns = columnNo(convertToDoubleDecimal(viewHolderList));
+                for (j = 0; j < viewHolderList.size(); j++) {
+                    gridHolderItems.add(new GridHolderItems(viewHolderList.get(j), (int) Math.round((viewHolderList.get(j).mWidth) * columns)));
                 }
-                customGridHoldersList.add(new CustomGridHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false),gridHolderItems,activity,columns));
+                customGridHoldersList.add(new CustomGridHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false), gridHolderItems, activity, columns));
                 fraction = 0;
-                gridHolderItems=new ArrayList<>();
+                gridHolderItems = new ArrayList<>();
+                viewHolderList = new ArrayList<>();
+                viewHolderList.add(viewHolders.get(i));
+            }
+            if (i == viewHolders.size() - 1) {
+                columns = columnNo(convertToDoubleDecimal(viewHolderList));
+                for (int j = 0; j < viewHolderList.size(); j++) {
+                    gridHolderItems.add(new GridHolderItems(viewHolderList.get(j), (int) Math.round((viewHolderList.get(j).mWidth) * columns)));
+                }
+                customGridHoldersList.add(new CustomGridHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_recyclerview, parent, false), gridHolderItems, activity, columns));
+                fraction = 0;
+                gridHolderItems = new ArrayList<>();
                 viewHolderList = new ArrayList<>();
             }
         }
@@ -57,13 +71,13 @@ public class GridHelperHolder extends RecyclerView.ViewHolder {
         for (int i = 0; i < viewHolderList.size(); i++) {
             integers.add((int) (viewHolderList.get(i).mWidth * 100));
         }
-
+        Log.e("GCD",(double) gcd(integers)+" ");
         return (int) (100 / (double) gcd(integers));
     }
 
     List<AbstractViewHolder> convertToDoubleDecimal(List<AbstractViewHolder> viewHolderList) {
+        DecimalFormat df = new DecimalFormat("0.00");
         for (int i = 0; i < viewHolderList.size(); i++) {
-            DecimalFormat df = new DecimalFormat("0.00");
             viewHolderList.get(i).mWidth = Double.valueOf(df.format((viewHolderList.get(i).mWidth)));
         }
         return viewHolderList;
