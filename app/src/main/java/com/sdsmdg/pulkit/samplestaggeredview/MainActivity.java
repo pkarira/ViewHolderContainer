@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         recList = (RecyclerView)findViewById(R.id.grid_recycler);
         recList.setHasFixedSize(true);
         llm = new LinearLayoutManager(this);
+        llm.setAutoMeasureEnabled(false);
         /*c=2;
         llm.setSpanSizeLookup( new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         recList.setLayoutManager(llm);
+        recList.setNestedScrollingEnabled(false);
        /* recList.addItemDecoration(new GridItemDecorat ion(3, 15, true));*/
         BaseAdapter recyclerViewAdapter = new BaseAdapter(createList(), this);
         recList.setAdapter(recyclerViewAdapter);

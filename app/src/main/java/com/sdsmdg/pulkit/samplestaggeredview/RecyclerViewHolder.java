@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ public class RecyclerViewHolder extends AbstractViewHolder {
     RecyclerView recyclerView;
     RecyclerViewAdapter recyclerViewAdapter;
     ArrayList<String> movies;
-    LinearLayoutManager linearLayoutManager;
+    private StaggeredGridLayoutManager llm;
 
     public RecyclerViewHolder(View itemView, Activity activity, double height, double width) {
         super(itemView);
@@ -30,13 +31,35 @@ public class RecyclerViewHolder extends AbstractViewHolder {
         movies.add("pulkit");
         movies.add("pulkit");
         movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
+        movies.add("pulkit");
         recyclerViewAdapter = new RecyclerViewAdapter(movies);
-        linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+        llm = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        llm.setAutoMeasureEnabled(true);
+        recyclerView.setLayoutManager(llm);
+       // recyclerView.setHasFixedSize(true);
+       /* ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
         params.height = (int)height;
         params.width = (int)(width*800);
-        recyclerView.setLayoutParams(params);
+        recyclerView.setLayoutParams(params);*/
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
