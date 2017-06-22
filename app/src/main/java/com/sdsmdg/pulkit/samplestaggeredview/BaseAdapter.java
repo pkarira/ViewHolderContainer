@@ -4,9 +4,12 @@ import android.app.Activity;;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,9 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int IMAGE = 2;
     private List<AbstractViewHolder> viewHolders;
     private List<GridHolderItems> gridHolderItems;
+    private ViewGroup viewGroup;
+    int position;
+    View view;
 
     public BaseAdapter(ArrayList<String> movieList1, Activity activity) {
         movieList = movieList1;
@@ -34,13 +40,17 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        viewGroup =parent;
+        Log.e("view group",parent+"");
         viewHolders = new ArrayList<>();
         gridHolderItems = new ArrayList<>();
         switch (viewType) {
 
             case RECYCLER:
+                view=LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false);
                 return new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 1);
             case IMAGE:
+
                 return new BaseAdapter.ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view_card, parent, false), 200, 1);
             case 3:
                 viewHolders.add(new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_layout, parent, false), parentAct, 200, 1));
@@ -99,24 +109,32 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        this.position=position;
         switch (holder.getItemViewType()) {
             case RECYCLER:
                 RecyclerViewHolder recyclerView = (RecyclerViewHolder) holder;
+               // changeColumnWidth(recyclerView.viewType,(recyclerView.mWidth)*800);
                 recyclerView.additems();
                 break;
             case IMAGE:
                 ListViewHolder listViewHolder = (ListViewHolder) holder;
+                //changeColumnWidth(listViewHolder.viewType,(listViewHolder.mWidth)*800);
                 listViewHolder.title.setText(movieList.get(position));
                 break;
             case 3:
+               // changeColumnWidth(((CustomStaggeredViewHolder) holder).viewType,800);
                 break;
             case 4:
+              //  changeColumnWidth(((CustomGridHolder) holder).viewType,800);
                 break;
             case 5:
+              //  changeColumnWidth(((CustomGridHolder) holder).viewType,800);
                 break;
             case 6:
+              //  changeColumnWidth(((CustomGridHolder) holder).viewType,800);
                 break;
             case 7:
+              //  changeColumnWidth(((CustomGridHolder) holder).viewType,800);
                 break;
             case 8:
                 break;
@@ -139,10 +157,12 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public class ListViewHolder extends AbstractViewHolder implements View.OnClickListener {
         TextView title;
         CardView cardView;
+        View viewType;
 
         public ListViewHolder(final View vi, double height, double width) {
             super(vi);
             mHeight = height;
+            viewType=itemView;
             mWidth = width;
             title = (TextView) vi.findViewById(R.id.textView);
             cardView = (CardView) vi.findViewById(R.id.cardView);
@@ -182,5 +202,31 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
         return position + 1;
+    }
+    public void changeColumnWidth(final View itemView, final double width)
+    {
+        itemView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                final ViewGroup.LayoutParams lp = itemView.getLayoutParams();
+                if (lp instanceof StaggeredGridLayoutManager.LayoutParams) {
+                    StaggeredGridLayoutManager.LayoutParams sglp =
+                            (StaggeredGridLayoutManager.LayoutParams) lp;
+                            sglp.setFullSpan(false);
+                            sglp.width=(int)(width/2);
+                            /*if((position-1)%2==0)
+                            sglp.width = (int)(width)/2);
+                            else
+                            sglp.width = (int)((width)/2);*/
+                           /* sglp.height = itemView.getHeight() / 2;*/
+                    itemView.setLayoutParams(sglp);
+                    final StaggeredGridLayoutManager lm =
+                            (StaggeredGridLayoutManager) ((RecyclerView)viewGroup).getLayoutManager();
+                    lm.invalidateSpanAssignments();
+                }
+                itemView.getViewTreeObserver().removeOnPreDrawListener(this);
+                return true;
+            }
+        });
     }
 }

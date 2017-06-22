@@ -16,8 +16,10 @@ public class CustomStaggeredViewHolder extends RecyclerView.ViewHolder {
     RecyclerView recyclerView;
     CustomStaggeredAdapter customHorizontalAdapter;
     private StaggeredGridLayoutManager llm;
+    View viewType;
     public CustomStaggeredViewHolder(View itemView, List<AbstractViewHolder> viewHolders, Activity activity,int columns) {
         super(itemView);
+        viewType=itemView;
         recyclerView = (RecyclerView) itemView.findViewById(R.id.customhorizontalrecyclerview);
         llm = new StaggeredGridLayoutManager(columns,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);

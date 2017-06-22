@@ -19,10 +19,12 @@ public class RecyclerViewHolder extends AbstractViewHolder {
     RecyclerViewAdapter recyclerViewAdapter;
     ArrayList<String> movies;
     LinearLayoutManager linearLayoutManager;
+    View viewType;
 
     public RecyclerViewHolder(View itemView, Activity activity, double height, double width) {
         super(itemView);
         mHeight = height;
+        viewType=itemView;
         mWidth = width;
         recyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerview);
         movies = new ArrayList<>();

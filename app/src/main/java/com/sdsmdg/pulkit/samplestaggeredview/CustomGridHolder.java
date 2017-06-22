@@ -14,8 +14,10 @@ public class CustomGridHolder extends RecyclerView.ViewHolder{
     RecyclerView recyclerView;
     CustomGridAdapter customGridAdapter;
     private GridLayoutManager gridLayoutManager;
+    View viewType;
     public CustomGridHolder(View itemView, final List<GridHolderItems> viewHolders, Activity activity, int columns) {
         super(itemView);
+        viewType=itemView;
         recyclerView = (RecyclerView) itemView.findViewById(R.id.customhorizontalrecyclerview);
         gridLayoutManager = new GridLayoutManager(activity,columns);
         customGridAdapter=new CustomGridAdapter(viewHolders);

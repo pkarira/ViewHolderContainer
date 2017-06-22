@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -13,14 +14,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recList;
     EditText t;
     int c;
-    private LinearLayoutManager llm;
+    private StaggeredGridLayoutManager llm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recList = (RecyclerView)findViewById(R.id.grid_recycler);
         recList.setHasFixedSize(true);
-        llm = new LinearLayoutManager(this);
+        llm = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         /*c=2;
         llm.setSpanSizeLookup( new GridLayoutManager.SpanSizeLookup() {
             @Override
